@@ -39,7 +39,7 @@ async function getChatHistory() {
             pesan_sistem: isCurrentAssistant || isCurrentSystem ? current.pesan : '-',
         };
 
-        // JIKA baris saat ini adalah balasan dr. Daksa (AI)
+        // JIKA baris saat ini adalah balasan Ngoerah Care (AI)
         // KITA CEK baris berikutnya (pesan yang lebih lama)
         if (isCurrentAssistant && i + 1 < data.length) {
             const next = data[i + 1];

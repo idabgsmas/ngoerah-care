@@ -85,7 +85,7 @@ export const columns: ColumnDef<TriageLog>[] = [
     },
     {
         accessorKey: "saran_sistem",
-        header: "Saran dr. Daksa (AI)",
+        header: "Saran Ngoerah Care ",
         cell: ({ row }) => {
             const saran = row.getValue("saran_sistem") as string;
             return (
