@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { AlertTriangle, MessageCircle, CheckCircle } from 'lucide-react'
+import type { TriageLog } from '@/types/database.types'
 
-export default function RadarAlert({ log }: { log: any }) {
+export default function RadarAlert({ log }: { log: TriageLog }) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
 
@@ -36,9 +36,9 @@ export default function RadarAlert({ log }: { log: any }) {
     }
 
     return (
-        <Card className="border-red-200 bg-red-50/50 shadow-md animate-pulse">
+        <Card className="border-red-200 bg-red-50/50 shadow-md radar-alert-glow">
             <CardHeader className="flex flex-col md:flex-row items-start md:items-center gap-4 pb-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white shrink-0 animate-pulse">
                     <AlertTriangle className="h-6 w-6" />
                 </div>
                 <div className="flex-1">

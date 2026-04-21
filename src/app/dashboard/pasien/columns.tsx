@@ -17,7 +17,7 @@ export type Pasien = {
 export const columns: ColumnDef<Pasien>[] = [
     {
         accessorKey: "no_rm_4_digit",
-        header: "No. RM",
+        header: "4 Digit Kode RM",
         cell: ({ row }) => <div className="font-medium">{row.getValue("no_rm_4_digit")}</div>,
     },
     {

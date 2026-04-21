@@ -1,9 +1,12 @@
-import { supabase } from '@/lib/supabaseClient'
+import { createSupabaseServerClient } from '@/lib/supabaseServer'
+
+export const dynamic = 'force-dynamic'
 import { columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
 import { Activity } from 'lucide-react'
 
 async function getTriageLogs() {
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
         .from('triage_logs')
         .select('*, pasien(nama_lengkap, no_rm_4_digit)')

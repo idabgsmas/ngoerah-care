@@ -1,8 +1,11 @@
-import { supabase } from '@/lib/supabaseClient'
+import { createSupabaseServerClient } from '@/lib/supabaseServer'
+
+export const dynamic = 'force-dynamic'
 import { columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
 
 async function getJadwal(alatFilter?: string) {
+    const supabase = await createSupabaseServerClient();
     let query = supabase
         .from('jadwal')
         .select('*, pasien!inner(nama_lengkap, no_rm_4_digit, tipe_alat)')
@@ -51,7 +54,7 @@ export default async function JadwalRadiasiPage(props: {
                 <DataTable
                     columns={columns}
                     data={dataJadwal}
-                    searchPlaceholder="Cari Nama Pasien atau No. RM..."
+                    searchPlaceholder="Cari Nama Pasien atau 4 Digit Kode RM..."
                     filterConfigs={filterConfigs}
                     dateFilterColumn="tgl_tindakan" // <-- Mengaktifkan filter kalender untuk kolom Tanggal
                 />

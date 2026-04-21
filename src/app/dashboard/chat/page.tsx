@@ -1,9 +1,12 @@
-import { supabase } from '@/lib/supabaseClient'
-import { columns } from "./columns"
+import { createSupabaseServerClient } from '@/lib/supabaseServer'
+
+export const dynamic = 'force-dynamic'
+import { columns, type ChatPair } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
 import { MessageSquareWarning } from 'lucide-react'
 
 async function getChatHistory() {
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
         .from('chat_history')
         .select('*, pasien(nama_lengkap, no_rm_4_digit)')
@@ -16,7 +19,7 @@ async function getChatHistory() {
     }
 
     // LOGIKA PENGGABUNGAN PERCAKAPAN
-    const pairedData: any[] = [];
+    const pairedData: ChatPair[] = [];
     let skipNext = false;
 
     for (let i = 0; i < data.length; i++) {

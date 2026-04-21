@@ -1,8 +1,12 @@
-import { supabase } from '@/lib/supabaseClient'
+import { createSupabaseServerClient } from '@/lib/supabaseServer'
+
+export const dynamic = 'force-dynamic'
 import { columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
+import type { Pasien } from '@/types/database.types'
 
 async function getPasien() {
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
         .from('pasien')
         .select('*')
@@ -20,9 +24,9 @@ export default async function DataPasienPage() {
 
     // MENGAMBIL DATA UNIK UNTUK MENU DROPDOWN FILTER SECARA OTOMATIS
     // Array.from(new Set(...)) digunakan untuk membuang data yang ganda/duplikat
-    const uniqueAlat = Array.from(new Set(dataPasien.map((p: any) => p.tipe_alat))).filter(Boolean) as string[];
-    const uniqueFase = Array.from(new Set(dataPasien.map((p: any) => p.status_fase))).filter(Boolean) as string[];
-    const uniqueKasus = Array.from(new Set(dataPasien.map((p: any) => p.kasus_carsinoma))).filter(Boolean) as string[];
+    const uniqueAlat = Array.from(new Set(dataPasien.map((p: Pasien) => p.tipe_alat))).filter(Boolean) as string[];
+    const uniqueFase = Array.from(new Set(dataPasien.map((p: Pasien) => p.status_fase))).filter(Boolean) as string[];
+    const uniqueKasus = Array.from(new Set(dataPasien.map((p: Pasien) => p.kasus_carsinoma))).filter(Boolean) as string[];
 
     // Mengirimkan struktur filter ke DataTable
     const filterConfigs = [
@@ -53,7 +57,7 @@ export default async function DataPasienPage() {
             <DataTable
                 columns={columns}
                 data={dataPasien}
-                searchPlaceholder="Cari Nama, No RM, atau No WA..."
+                searchPlaceholder="Cari Nama, 4 Digit Kode RM, atau No WA..."
                 filterConfigs={filterConfigs} // <-- Menyuntikkan filter ke dalam tabel
             />
         </div>

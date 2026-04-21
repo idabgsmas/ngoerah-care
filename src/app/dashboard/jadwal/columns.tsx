@@ -49,7 +49,7 @@ export const columns: ColumnDef<Jadwal>[] = [
     {
         id: "no_rm",
         accessorFn: (row) => row.pasien?.no_rm_4_digit,
-        header: "No. RM",
+        header: "4 Digit RM",
     },
     {
         id: "nama_pasien",

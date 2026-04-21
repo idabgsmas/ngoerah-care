@@ -1,13 +1,17 @@
-import { supabase } from '@/lib/supabaseClient'
+import { createSupabaseServerClient } from '@/lib/supabaseServer'
+
+export const dynamic = 'force-dynamic'
 import { columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
 import { BellRing, CalendarClock } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import type { Jadwal } from '@/types/database.types'
 
 // Fungsi 1: Mengambil Riwayat Terkirim
 async function getBroadcastLogs() {
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
         .from('chat_history')
         .select('*, pasien(nama_lengkap, no_rm_4_digit)')
@@ -29,6 +33,7 @@ async function getAntreanBesok() {
     besok.setDate(besok.getDate() + 1)
     const besokStr = besok.toISOString().split('T')[0]
 
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
         .from('jadwal')
         .select('*, pasien(nama_lengkap, no_rm_4_digit)')
@@ -82,7 +87,7 @@ export default async function PengingatOtomatisPage() {
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead className="w-[120px]">No. RM</TableHead>
+                                    <TableHead className="w-[120px]">4 Digit Kode RM</TableHead>
                                     <TableHead>Nama Pasien</TableHead>
                                     <TableHead className="text-center">Fraksi Besok</TableHead>
                                     <TableHead>Prediksi Jenis Pengingat</TableHead>
@@ -90,7 +95,7 @@ export default async function PengingatOtomatisPage() {
                             </TableHeader>
                             <TableBody>
                                 {antreanBesok && antreanBesok.length > 0 ? (
-                                    antreanBesok.map((jadwal: any) => {
+                                    antreanBesok.map((jadwal: Jadwal) => {
                                         // Logika prediksi: Jika fraksi besok adalah kelipatan 5, maka itu evaluasi K-5
                                         const fraksiBesok = jadwal.fraksi_ke;
                                         const isK5 = fraksiBesok > 0 && fraksiBesok % 5 === 0;

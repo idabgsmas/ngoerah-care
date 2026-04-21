@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabaseClient'
+import { createSupabaseServerClient } from '@/lib/supabaseServer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Users, Activity, CalendarDays, CheckCircle2, Clock } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
@@ -10,9 +10,13 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import RadarAlert from '@/components/RadarAlert'
+import RealtimeTriaseRadar from '@/components/RealtimeTriaseRadar'
+import type { TriageLog, Jadwal, ChatHistory } from '@/types/database.types'
+
+export const dynamic = 'force-dynamic'
 
 async function getDashboardData() {
+    const supabase = await createSupabaseServerClient();
     const today = new Date().toISOString().split('T')[0];
 
     // 1. Statistik Utama
@@ -51,9 +55,9 @@ async function getDashboardData() {
             pasienSelesai: pasienSelesai || 0,
             jadwalHariIni: jadwalHariIniCount || 0
         },
-        triaseDarurat: triaseDarurat || [],
-        antreanHariIni: antreanHariIni || [],
-        chatTerbaru: chatTerbaru || []
+        triaseDarurat: (triaseDarurat || []) as TriageLog[],
+        antreanHariIni: (antreanHariIni || []) as Jadwal[],
+        chatTerbaru: (chatTerbaru || []) as ChatHistory[]
     }
 }
 
@@ -67,14 +71,8 @@ export default async function DashboardOverview() {
                 <p className="text-slate-500">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. Dr. I.G.N.G. Ngoerah.</p>
             </div>
 
-            {/* Radar Triase Darurat - Menggunakan Komponen Client */}
-            {data.triaseDarurat.length > 0 && (
-                <div className="grid gap-4">
-                    {data.triaseDarurat.map((log: any) => (
-                        <RadarAlert key={log.id_log} log={log} />
-                    ))}
-                </div>
-            )}
+            {/* Radar Triase Darurat - Realtime Client Component */}
+            <RealtimeTriaseRadar initialData={data.triaseDarurat} />
 
             {/* Kartu Statistik Utama */}
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -145,7 +143,7 @@ export default async function DashboardOverview() {
                             </TableHeader>
                             <TableBody>
                                 {data.antreanHariIni.length > 0 ? (
-                                    data.antreanHariIni.map((jadwal: any) => (
+                                    data.antreanHariIni.map((jadwal) => (
                                         <TableRow key={jadwal.id_jadwal}>
                                             <TableCell className="text-center">
                                                 <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold text-xs mx-auto">
@@ -186,14 +184,14 @@ export default async function DashboardOverview() {
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
-                            {data.chatTerbaru.map((chat: any) => (
+                            {data.chatTerbaru.map((chat) => (
                                 <div key={chat.id_chat} className="flex items-start gap-4 border-b border-slate-100 pb-4 last:border-0 last:pb-0">
                                     <div className="flex-1 space-y-1">
                                         <p className="text-sm font-semibold text-slate-800">
                                             {chat.pasien?.nama_lengkap || 'Unknown'}
                                         </p>
                                         <p className="text-sm text-slate-500 line-clamp-2 italic">
-                                            "{chat.pesan}"
+                                            &quot;{chat.pesan}&quot;
                                         </p>
                                     </div>
                                     <div className="text-[10px] font-medium text-slate-400 uppercase">
