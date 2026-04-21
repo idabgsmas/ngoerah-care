@@ -84,7 +84,7 @@ export default function LoginPage() {
 
                     <CardTitle className="text-2xl font-bold">Ngoerah Care</CardTitle>
                     <CardDescription>
-                        Masukkan kredensial admin untuk mengakses sistem pemantauan radioterapi.
+                        Masukkan kredensial admin untuk mengakses sistem pemantauan chatbot pasien radioterapi.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -118,7 +118,7 @@ export default function LoginPage() {
                                             <DialogDescription className="pt-3 text-slate-600 leading-relaxed">
                                                 Demi menjaga keamanan dan kerahasiaan data rekam medis pasien, reset password tidak dapat dilakukan secara otomatis.
                                                 <br /><br />
-                                                Silakan hubungi <strong className="text-slate-800">Super Admin (Gus)</strong> atau Tim IT RSUP Ngoerah untuk meminta perubahan kata sandi akun Anda.
+                                                Silakan hubungi <strong className="text-slate-800">Admin Ngoerah Care</strong> atau Radiologi RSUP Prof. dr. I.G.N.G. Ngoerah untuk meminta perubahan kata sandi akun Anda.
                                             </DialogDescription>
                                         </DialogHeader>
                                         <div className="flex justify-end pt-2">

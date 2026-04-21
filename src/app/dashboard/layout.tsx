@@ -49,7 +49,7 @@ export default function DashboardLayout({
 
                 <main className="flex w-full flex-col md:pl-64">
                     <header className="flex h-14 items-center border-b bg-white px-6">
-                        <p className="text-sm text-slate-500">Sistem Pemantauan Pasien Radioterapi RSUP Ngoerah</p>
+                        <p className="text-sm text-slate-500">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah</p>
                     </header>
                     <div className="flex-1 p-6">
                         {children}

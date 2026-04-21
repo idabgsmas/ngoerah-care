@@ -16,7 +16,7 @@ export default function RadarAlert({ log }: { log: any }) {
     const hubungiPasien = () => {
         const phone = log.pasien?.no_wa_primary;
         if (phone) {
-            const waUrl = `https://wa.me/${phone}?text=Halo Bapak/Ibu ${log.pasien?.nama_lengkap}, kami dari RSUP Ngoerah melihat keluhan Anda mengenai: ${log.detail_keluhan}. Bagaimana kondisi Anda saat ini?`;
+            const waUrl = `https://wa.me/${phone}?text=Halo Bapak/Ibu ${log.pasien?.nama_lengkap}, kami dari RSUP Prof. dr. I.G.N.G. Ngoerah melihat keluhan Anda mengenai: ${log.detail_keluhan}. Bagaimana kondisi Anda saat ini?`;
             window.open(waUrl, '_blank');
         }
     }

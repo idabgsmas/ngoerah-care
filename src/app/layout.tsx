@@ -17,19 +17,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ngoerah Care - RSUP Prof. Dr. I.G.N.G. Ngoerah",
-  description: "Sistem Pemantauan Pasien Radioterapi RSUP Ngoerah",
+  description: "Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah",
   icons: {
     icon: [
       {
-        url: "/logo_rsup_ngoerah.png",
-        href: "/logo_rsup_ngoerah.png",
+        url: "/favicon.ico",
+        href: "/favicon.ico",
       },
     ],
     // Ini juga membantu untuk tampilan di shortcut HP
     apple: [
       {
-        url: "/logo_rsup_ngoerah.png",
-        href: "/logo_rsup_ngoerah.png",
+        url: "/favicon.ico",
+        href: "/favicon.ico",
       },
     ],
   },

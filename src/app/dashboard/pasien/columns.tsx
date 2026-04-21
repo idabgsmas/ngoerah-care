@@ -38,11 +38,11 @@ export const columns: ColumnDef<Pasien>[] = [
     },
     {
         accessorKey: "status_fase",
-        header: () => <div className="text-center">Status Fase</div>, // Meratakan header ke tengah
+        header: () => <div className="text-left">Status Fase</div>, // Meratakan header ke tengah
         cell: ({ row }) => {
             const status = row.getValue("status_fase") as string;
             return (
-                <div className="flex justify-center"> {/* Meratakan badge ke tengah */}
+                <div className="flex justify-left"> {/* Meratakan badge ke tengah */}
                     <Badge variant={
                         status === 'Proses Fisikawan' ? 'secondary' :
                             status === 'Selesai Radiasi' ? 'default' :

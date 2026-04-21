@@ -64,7 +64,7 @@ export default async function DashboardOverview() {
         <div className="space-y-6">
             <div>
                 <h2 className="text-2xl font-bold tracking-tight">Overview Dashboard</h2>
-                <p className="text-slate-500">Sistem Pemantauan Pasien Radioterapi RSUP Prof. Dr. I.G.N.G. Ngoerah.</p>
+                <p className="text-slate-500">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. Dr. I.G.N.G. Ngoerah.</p>
             </div>
 
             {/* Radar Triase Darurat - Menggunakan Komponen Client */}

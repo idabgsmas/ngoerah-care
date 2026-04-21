@@ -70,7 +70,7 @@ export default async function ChatPage() {
                 </div>
                 <div>
                     <h2 className="text-2xl font-bold tracking-tight">Chat History</h2>
-                    <p className="text-slate-500">Pemantauan interaksi pasien dengan Ngoerah Care dan notifikasi sistem.</p>
+                    <p className="text-slate-500">Pemantauan interaksi chatbot pasien dengan Ngoerah Care dan notifikasi sistem.</p>
                 </div>
             </div>
 
