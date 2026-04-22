@@ -89,7 +89,7 @@ export default async function PengingatOtomatisPage() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4">
-                    <div className="rounded-md border bg-white">
+                    <div className="rounded-md border dark:border-slate-800 bg-white dark:bg-transparent">
                         <Table>
                             <TableHeader>
                                 <TableRow>

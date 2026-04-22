@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
                 <div className="flex flex-1 flex-wrap items-center gap-3">
                     {/* 1. Global Search */}
                     <div className="flex w-full max-w-sm items-center gap-2 md:w-auto">
-                        <Search className="h-4 w-4 text-slate-400" />
+                        <Search className="h-4 w-4 text-slate-400 dark:text-slate-500" />
                         <Input
                             placeholder={searchPlaceholder}
                             value={globalFilter ?? ""}
@@ -90,7 +90,7 @@ export function DataTable<TData, TValue>({
                             onChange={(event) =>
                                 table.getColumn(dateFilterColumn)?.setFilterValue(event.target.value || undefined)
                             }
-                            className="w-full md:w-[150px] bg-white text-slate-500"
+                            className="w-full md:w-[150px] bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-500 dark:text-slate-400"
                         />
                     )}
 
@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({
                                 table.getColumn(filter.columnId)?.setFilterValue(value === "all" ? undefined : value)
                             }}
                         >
-                            <SelectTrigger className="h-9 w-[150px] bg-white">
+                            <SelectTrigger className="h-9 w-[150px] bg-white dark:bg-slate-900 dark:border-slate-800">
                                 <SelectValue placeholder={`Semua ${filter.title}`} />
                             </SelectTrigger>
                             <SelectContent>
@@ -142,7 +142,7 @@ export function DataTable<TData, TValue>({
                             table.setPageSize(Number(value))
                         }}
                     >
-                        <SelectTrigger className="h-9 w-[70px] bg-white">
+                        <SelectTrigger className="h-9 w-[70px] bg-white dark:bg-slate-900 dark:border-slate-800">
                             <SelectValue placeholder={table.getState().pagination.pageSize} />
                         </SelectTrigger>
                         <SelectContent side="top">
@@ -158,7 +158,7 @@ export function DataTable<TData, TValue>({
             </div>
 
             {/* Tabel Data */}
-            <div className="rounded-md border bg-white">
+            <div className="rounded-md border dark:border-slate-800 bg-white dark:bg-slate-900">
                 <Table>
                     {/* Header & Body Table (Tetap sama seperti sebelumnya) */}
                     <TableHeader>

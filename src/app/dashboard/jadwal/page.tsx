@@ -50,7 +50,7 @@ export default async function JadwalRadiasiPage(props: {
                 <p className="text-slate-500">Daftar antrean dan jadwal tindakan radioterapi pasien.</p>
             </div>
 
-            <div className="rounded-md bg-white">
+            <div className="rounded-md bg-white dark:bg-transparent">
                 <DataTable
                     columns={columns}
                     data={dataJadwal}

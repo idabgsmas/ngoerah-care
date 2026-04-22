@@ -78,7 +78,7 @@ export const columns: ColumnDef<Pasien>[] = [
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="gap-1.5 text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                        className="gap-1.5 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:text-blue-400 dark:hover:text-blue-300 dark:hover:bg-blue-900/50"
                         onClick={() => onDetailClick?.(pasien)}
                     >
                         <Eye className="h-4 w-4" />

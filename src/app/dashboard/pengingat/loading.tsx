@@ -18,7 +18,7 @@ export default function TableLoading() {
             </div>
 
             {/* Table skeleton */}
-            <div className="rounded-md border bg-white">
+            <div className="rounded-md border dark:border-slate-800 bg-white dark:bg-slate-900">
                 {/* Header row */}
                 <div className="flex items-center gap-4 border-b px-4 py-3 bg-slate-50/50">
                     {[...Array(5)].map((_, i) => (

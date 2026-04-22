@@ -109,7 +109,7 @@ export default async function DashboardOverview() {
                 <Card className="border-l-4 border-l-slate-600">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Total Database Pasien</CardTitle>
-                        <Users className="h-4 w-4 text-slate-600" />
+                        <Users className="h-4 w-4 text-slate-600 dark:text-slate-400" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{data.stats.totalPasien}</div>
@@ -127,13 +127,13 @@ export default async function DashboardOverview() {
                             <CardTitle>Antrean Radiasi Hari Ini</CardTitle>
                             <CardDescription>Daftar pasien berdasarkan nomor antrean di setiap alat.</CardDescription>
                         </div>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
                             <Clock className="h-4 w-4 text-slate-500" />
                         </div>
                     </CardHeader>
                     <CardContent>
                         <Table>
-                            <TableHeader className="bg-slate-50/50">
+                            <TableHeader className="bg-slate-50/50 dark:bg-slate-800/50">
                                 <TableRow>
                                     <TableHead className="w-[80px] text-center">Antrean</TableHead>
                                     <TableHead>Pasien</TableHead>
@@ -146,20 +146,20 @@ export default async function DashboardOverview() {
                                     data.antreanHariIni.map((jadwal) => (
                                         <TableRow key={jadwal.id_jadwal}>
                                             <TableCell className="text-center">
-                                                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold text-xs mx-auto">
+                                                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xs mx-auto">
                                                     {jadwal.no_antrean || '-'}
                                                 </div>
                                             </TableCell>
                                             <TableCell>
                                                 <div className="font-medium text-sm">{jadwal.pasien?.nama_lengkap}</div>
-                                                <div className="text-xs text-slate-400">RM: {jadwal.pasien?.no_rm_4_digit}</div>
+                                                <div className="text-xs text-slate-400 dark:text-slate-500">RM: {jadwal.pasien?.no_rm_4_digit}</div>
                                             </TableCell>
                                             <TableCell>
-                                                <Badge variant="outline" className="font-normal bg-slate-50 text-slate-600 border-slate-200">
+                                                <Badge variant="outline" className="font-normal bg-slate-50 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">
                                                     {jadwal.pasien?.tipe_alat || '-'}
                                                 </Badge>
                                             </TableCell>
-                                            <TableCell className="text-center font-medium text-slate-600 text-sm">
+                                            <TableCell className="text-center font-medium text-slate-600 dark:text-slate-300 text-sm">
                                                 {jadwal.jam_sinar || '--:--'}
                                             </TableCell>
                                         </TableRow>
@@ -185,16 +185,16 @@ export default async function DashboardOverview() {
                     <CardContent>
                         <div className="space-y-4">
                             {data.chatTerbaru.map((chat) => (
-                                <div key={chat.id_chat} className="flex items-start gap-4 border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+                                <div key={chat.id_chat} className="flex items-start gap-4 border-b border-slate-100 dark:border-slate-800 pb-4 last:border-0 last:pb-0">
                                     <div className="flex-1 space-y-1">
-                                        <p className="text-sm font-semibold text-slate-800">
+                                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                                             {chat.pasien?.nama_lengkap || 'Unknown'}
                                         </p>
-                                        <p className="text-sm text-slate-500 line-clamp-2 italic">
+                                        <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 italic">
                                             &quot;{chat.pesan}&quot;
                                         </p>
                                     </div>
-                                    <div className="text-[10px] font-medium text-slate-400 uppercase">
+                                    <div className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase">
                                         {new Date(chat.created_at).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}
                                     </div>
                                 </div>

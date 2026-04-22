@@ -24,7 +24,7 @@ export const columns: ColumnDef<ChatPair>[] = [
         },
         cell: ({ row }) => {
             return (
-                <div className="font-medium text-slate-600 whitespace-nowrap align-top">
+                <div className="font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap align-top">
                     {new Date(row.getValue("created_at")).toLocaleString('id-ID', {
                         day: '2-digit', month: 'short', year: 'numeric',
                         hour: '2-digit', minute: '2-digit'
@@ -41,8 +41,8 @@ export const columns: ColumnDef<ChatPair>[] = [
             const chat = row.original;
             return (
                 <div className="align-top min-w-[150px]">
-                    <div className="font-medium">{chat.pasien?.nama_lengkap || 'Unknown'}</div>
-                    <div className="text-xs text-slate-500">RM: {chat.pasien?.no_rm_4_digit || '-'}</div>
+                    <div className="font-medium dark:text-slate-200">{chat.pasien?.nama_lengkap || 'Unknown'}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">RM: {chat.pasien?.no_rm_4_digit || '-'}</div>
                 </div>
             )
         }
@@ -55,12 +55,12 @@ export const columns: ColumnDef<ChatPair>[] = [
 
             // JARING PENGAMAN: Jika pesan null, undefined, atau '-', tampilkan strip saja
             if (!pesan || pesan === '-') {
-                return <div className="text-slate-300 italic align-top">-</div>
+                return <div className="text-slate-300 dark:text-slate-600 italic align-top">-</div>
             }
 
             return (
                 <div className="align-top max-w-xs md:max-w-sm">
-                    <p className="text-sm whitespace-pre-wrap break-words text-slate-700">
+                    <p className="text-sm whitespace-pre-wrap break-words text-slate-700 dark:text-slate-300">
                         {pesan}
                     </p>
                 </div>
@@ -75,7 +75,7 @@ export const columns: ColumnDef<ChatPair>[] = [
 
             // JARING PENGAMAN: Mencegah crash membaca pesan kosong/null dari database
             if (!pesan || pesan === '-') {
-                return <div className="text-slate-300 italic align-top">-</div>
+                return <div className="text-slate-300 dark:text-slate-600 italic align-top">-</div>
             }
 
             // Karena !pesan sudah dilewati, kita aman menjalankan fungsi string seperti .includes dan .replace
@@ -83,7 +83,7 @@ export const columns: ColumnDef<ChatPair>[] = [
 
             return (
                 <div className="align-top max-w-xs md:max-w-sm">
-                    <div className={`p-3 rounded-md text-sm whitespace-pre-wrap break-words ${isPengingat ? 'bg-amber-50 text-amber-800 border border-amber-100' : 'bg-blue-50/50 text-slate-700 border border-blue-100/50'}`}>
+                    <div className={`p-3 rounded-md text-sm whitespace-pre-wrap break-words ${isPengingat ? 'bg-amber-50 text-amber-800 border border-amber-100 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20' : 'bg-blue-50/50 text-slate-700 border border-blue-100/50 dark:bg-blue-900/20 dark:text-slate-300 dark:border-blue-800/50'}`}>
                         {isPengingat ? <span className="font-semibold block mb-1">📢 Broadcast Pengingat</span> : null}
                         {pesan.replace('PENGINGAT OTOMATIS: ', '')}
                     </div>

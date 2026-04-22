@@ -43,7 +43,7 @@ export const columns: ColumnDef<Jadwal>[] = [
         header: () => <div className="text-center">No. Antrean</div>,
         cell: ({ row }) => {
             const antrean = row.getValue("no_antrean") as number;
-            return <div className="text-center font-bold text-blue-600">{antrean === 0 ? '-' : antrean}</div>
+            return <div className="text-center font-bold text-blue-600 dark:text-blue-400">{antrean === 0 ? '-' : antrean}</div>
         }
     },
     {
@@ -79,9 +79,9 @@ export const columns: ColumnDef<Jadwal>[] = [
             return (
                 <div className="flex justify-center">
                     {isReminded ? (
-                        <Badge variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-100">Terkirim</Badge>
+                        <Badge variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-500/20 dark:text-green-400 dark:hover:bg-green-500/30">Terkirim</Badge>
                     ) : (
-                        <Badge variant="outline" className="text-slate-400">Belum</Badge>
+                        <Badge variant="outline" className="text-slate-400 dark:text-slate-500 dark:border-slate-800">Belum</Badge>
                     )}
                 </div>
             )

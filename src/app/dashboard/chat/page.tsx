@@ -83,7 +83,7 @@ export default async function ChatPage() {
                 </div>
             </div>
 
-            <div className="rounded-md bg-white">
+            <div className="rounded-md bg-white dark:bg-transparent">
                 <DataTable
                     columns={columns}
                     data={chatHistory}
