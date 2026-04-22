@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { Activity, LayoutDashboard, Users, CalendarDays, ChevronDown, MessageSquare, BellRing, Menu } from 'lucide-react'
+import { Activity, LayoutDashboard, Users, CalendarDays, ChevronDown, MessageSquare, BellRing, Menu, ShieldCheck } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
     { href: '/dashboard/chat', label: 'Log Chat', icon: <MessageSquare className="h-5 w-5" /> },
     { href: '/dashboard/pasien', label: 'Data Pasien', icon: <Users className="h-5 w-5" /> },
     { href: '/dashboard/pengingat', label: 'Pengingat Otomatis', icon: <BellRing className="h-5 w-5" /> },
+    { href: '/dashboard/users', label: 'Manajemen User', icon: <ShieldCheck className="h-5 w-5" /> },
 ]
 
 const jadwalSubItems = [
@@ -51,8 +52,8 @@ function NavLink({ item, pathname, onClick }: { item: NavItem; pathname: string;
             className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
                 isActive
-                    ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600"
-                    : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                    ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600 dark:bg-blue-950 dark:text-blue-300"
+                    : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
             )}
         >
             {item.icon}
@@ -73,8 +74,8 @@ function JadwalDropdown({ pathname, onClick }: { pathname: string; onClick?: () 
                 className={cn(
                     "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
                     isJadwalActive
-                        ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600"
-                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                        ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600 dark:bg-blue-950 dark:text-blue-300"
+                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
                 )}
             >
                 <CalendarDays className="h-5 w-5" />
@@ -102,8 +103,8 @@ function JadwalDropdown({ pathname, onClick }: { pathname: string; onClick?: () 
                                 className={cn(
                                     "block rounded-md px-3 py-2 text-sm transition-colors",
                                     isSubActive
-                                        ? "bg-blue-50 text-blue-700 font-medium"
-                                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                                        ? "bg-blue-50 text-blue-700 font-medium dark:bg-blue-950 dark:text-blue-300"
+                                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
                                 )}
                             >
                                 {sub.label}
@@ -121,9 +122,9 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
     return (
         <>
-            <div className="flex h-14 items-center gap-3 border-b px-6">
+            <div className="flex h-14 items-center gap-3 border-b dark:border-slate-800 px-6">
                 <Image src="/logo_rsup_ngoerah.png" alt="Logo RSUP Ngoerah" width={28} height={28} />
-                <h1 className="text-lg font-bold text-slate-900">Ngoerah Care</h1>
+                <h1 className="text-lg font-bold text-slate-900 dark:text-slate-100">Ngoerah Care</h1>
             </div>
             <nav className="flex-1 space-y-1 overflow-y-auto p-4">
                 {navItems.map((item) => (
@@ -131,7 +132,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                 ))}
                 <JadwalDropdown pathname={pathname} onClick={onNavigate} />
             </nav>
-            <div className="border-t p-4">
+            <div className="border-t dark:border-slate-800 p-4">
                 <LogoutButton />
             </div>
         </>
@@ -141,7 +142,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 // Desktop sidebar (static)
 export function DesktopSidebar() {
     return (
-        <aside className="fixed hidden h-screen w-64 flex-col border-r bg-white md:flex">
+        <aside className="fixed hidden h-screen w-64 flex-col border-r bg-white dark:bg-slate-900 dark:border-slate-800 md:flex">
             <SidebarContent />
         </aside>
     )

@@ -1,5 +1,6 @@
 import ProtectedRoute from '@/components/ProtectedRoute'
 import { DesktopSidebar, MobileSidebar } from '@/components/Sidebar'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export default function DashboardLayout({
     children,
@@ -8,15 +9,18 @@ export default function DashboardLayout({
 }) {
     return (
         <ProtectedRoute>
-            <div className="flex min-h-screen w-full bg-slate-50/50">
+            <div className="flex min-h-screen w-full bg-slate-50/50 dark:bg-slate-950">
                 {/* Sidebar Desktop */}
                 <DesktopSidebar />
 
                 <main className="flex w-full flex-col md:pl-64">
-                    <header className="flex h-14 items-center gap-3 border-b bg-white px-4 md:px-6">
+                    <header className="flex h-14 items-center gap-3 border-b bg-white dark:bg-slate-900 dark:border-slate-800 px-4 md:px-6">
                         {/* Hamburger menu — hanya muncul di mobile */}
                         <MobileSidebar />
-                        <p className="text-sm text-slate-500">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah</p>
+                        <div className="ml-auto">
+                            <ThemeToggle />
+                        </div>
                     </header>
                     <div className="flex-1 p-4 md:p-6">
                         {children}

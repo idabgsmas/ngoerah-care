@@ -1,8 +1,7 @@
 import { createSupabaseServerClient } from '@/lib/supabaseServer'
 
 export const dynamic = 'force-dynamic'
-import { columns } from "./columns"
-import { DataTable } from "@/components/ui/data-table"
+import PasienDataTable from "./PasienDataTable"
 import type { Pasien } from '@/types/database.types'
 
 async function getPasien() {
@@ -54,11 +53,9 @@ export default async function DataPasienPage() {
                 <p className="text-slate-500">Daftar seluruh pasien radioterapi yang terdaftar di sistem.</p>
             </div>
 
-            <DataTable
-                columns={columns}
+            <PasienDataTable
                 data={dataPasien}
-                searchPlaceholder="Cari Nama, 4 Digit Kode RM, atau No WA..."
-                filterConfigs={filterConfigs} // <-- Menyuntikkan filter ke dalam tabel
+                filterConfigs={filterConfigs}
             />
         </div>
     )

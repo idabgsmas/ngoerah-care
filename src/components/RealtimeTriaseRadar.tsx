@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import RadarAlert from '@/components/RadarAlert'
 import type { TriageLog } from '@/types/database.types'
+import { useNotification } from '@/hooks/useNotification'
 import { Radio } from 'lucide-react'
 
 interface RealtimeTriaseRadarProps {
@@ -13,6 +14,14 @@ interface RealtimeTriaseRadarProps {
 export default function RealtimeTriaseRadar({ initialData }: RealtimeTriaseRadarProps) {
     const [triaseDarurat, setTriaseDarurat] = useState<TriageLog[]>(initialData)
     const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
+    const { sendNotification } = useNotification()
+    const prevCountRef = useRef(initialData.length)
+
+    // Fallback: Jika router.refresh() dipanggil, pastikan komponen sinkronisasi dengan data server
+    useEffect(() => {
+        setTriaseDarurat(initialData)
+        prevCountRef.current = initialData.length
+    }, [initialData])
 
     useEffect(() => {
         // Subscribe ke perubahan realtime pada tabel triage_logs
@@ -37,6 +46,15 @@ export default function RealtimeTriaseRadar({ initialData }: RealtimeTriaseRadar
                         .order('created_at', { ascending: false })
 
                     if (data) {
+                        // Kirim browser notification jika ada triase darurat baru
+                        if (data.length > prevCountRef.current) {
+                            const newest = data[0] as TriageLog
+                            sendNotification('⚠️ Triase Darurat Baru!', {
+                                body: `Pasien ${newest.pasien?.nama_lengkap || 'Unknown'} memerlukan perhatian segera.\nKeluhan: ${newest.detail_keluhan}`,
+                                tag: 'triage-darurat', // Mencegah notifikasi duplikat
+                            })
+                        }
+                        prevCountRef.current = data.length
                         setTriaseDarurat(data as TriageLog[])
                         setLastUpdate(new Date())
                     }
@@ -65,7 +83,14 @@ export default function RealtimeTriaseRadar({ initialData }: RealtimeTriaseRadar
             {/* Daftar alert */}
             <div className="grid gap-4">
                 {triaseDarurat.map((log) => (
-                    <RadarAlert key={log.id_log} log={log} />
+                    <RadarAlert 
+                        key={log.id_log} 
+                        log={log} 
+                        onHandled={() => {
+                            // Hapus instan dari UI tanpa nunggu realtime/refresh lambat
+                            setTriaseDarurat(prev => prev.filter(l => l.id_log !== log.id_log))
+                        }}
+                    />
                 ))}
             </div>
         </div>

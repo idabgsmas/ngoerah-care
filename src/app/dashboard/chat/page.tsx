@@ -7,11 +7,17 @@ import { MessageSquareWarning } from 'lucide-react'
 
 async function getChatHistory() {
     const supabase = await createSupabaseServerClient();
+
+    // Default: ambil data 30 hari terakhir (menggantikan hardcoded limit 500)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const sinceDate = thirtyDaysAgo.toISOString();
+
     const { data, error } = await supabase
         .from('chat_history')
         .select('*, pasien(nama_lengkap, no_rm_4_digit)')
-        .order('created_at', { ascending: false }) // Diurutkan dari yang terbaru
-        .limit(500)
+        .gte('created_at', sinceDate)
+        .order('created_at', { ascending: false })
 
     if (error || !data) {
         console.error("Error fetching chat history:", error)

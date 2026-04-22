@@ -12,12 +12,18 @@ import type { Jadwal } from '@/types/database.types'
 // Fungsi 1: Mengambil Riwayat Terkirim
 async function getBroadcastLogs() {
     const supabase = await createSupabaseServerClient();
+
+    // Default: ambil data 30 hari terakhir (menggantikan hardcoded limit 500)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const sinceDate = thirtyDaysAgo.toISOString();
+
     const { data, error } = await supabase
         .from('chat_history')
         .select('*, pasien(nama_lengkap, no_rm_4_digit)')
         .ilike('pesan', '%PENGINGAT OTOMATIS:%')
+        .gte('created_at', sinceDate)
         .order('created_at', { ascending: false })
-        .limit(500)
 
     if (error) {
         console.error("Error fetching broadcasts:", error)

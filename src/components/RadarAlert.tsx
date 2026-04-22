@@ -8,7 +8,12 @@ import { Button } from "@/components/ui/button"
 import { AlertTriangle, MessageCircle, CheckCircle } from 'lucide-react'
 import type { TriageLog } from '@/types/database.types'
 
-export default function RadarAlert({ log }: { log: TriageLog }) {
+interface RadarAlertProps {
+    log: TriageLog;
+    onHandled?: () => void;
+}
+
+export default function RadarAlert({ log, onHandled }: RadarAlertProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
 
@@ -30,7 +35,10 @@ export default function RadarAlert({ log }: { log: TriageLog }) {
             .eq('id_log', log.id_log)
 
         if (!error) {
-            router.refresh() // Memperbarui data di halaman Overview secara instan
+            // Panggil callback agar terhapus seketika dari UI (Client State)
+            if (onHandled) onHandled();
+            // Tetap lakukan refresh server-side di background
+            router.refresh() 
         }
         setLoading(false)
     }
