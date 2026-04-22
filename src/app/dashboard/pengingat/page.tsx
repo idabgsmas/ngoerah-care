@@ -78,11 +78,11 @@ export default async function PengingatOtomatisPage() {
             </div>
 
             {/* SECTION 1: Antrean Pengingat Besok */}
-            <Card className="border-amber-200/50 shadow-sm">
-                <CardHeader className="bg-amber-50/30 pb-4">
+            <Card className="border-amber-200/50 dark:border-amber-900/50 shadow-sm">
+                <CardHeader className="bg-amber-50/30 dark:bg-amber-900/10 pb-4">
                     <div className="flex items-center gap-2">
                         <CalendarClock className="h-5 w-5 text-amber-500" />
-                        <CardTitle className="text-lg text-amber-900">Antrean Pengingat (Tindakan Besok)</CardTitle>
+                        <CardTitle className="text-lg text-amber-900 dark:text-amber-500">Antrean Pengingat (Tindakan Besok)</CardTitle>
                     </div>
                     <CardDescription>
                         Prediksi pasien yang akan menerima notifikasi dari Ngoerah Care berdasarkan jadwal tindakan esok hari.

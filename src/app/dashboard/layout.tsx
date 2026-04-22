@@ -14,7 +14,7 @@ export default function DashboardLayout({
                 <DesktopSidebar />
 
                 <main className="flex w-full flex-col md:pl-64">
-                    <header className="flex h-14 items-center gap-3 border-b bg-white dark:bg-slate-900 dark:border-slate-800 px-4 md:px-6">
+                    <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-slate-200/50 bg-white/70 backdrop-blur-md dark:bg-slate-950/60 dark:border-slate-800/50 shadow-sm px-4 md:px-6 transition-all">
                         {/* Hamburger menu — hanya muncul di mobile */}
                         <MobileSidebar />
                         <p className="text-sm text-slate-500 dark:text-slate-400">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah</p>

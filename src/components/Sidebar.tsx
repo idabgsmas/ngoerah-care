@@ -50,10 +50,10 @@ function NavLink({ item, pathname, onClick }: { item: NavItem; pathname: string;
             href={item.href}
             onClick={onClick}
             className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200",
                 isActive
-                    ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600 dark:bg-blue-950 dark:text-blue-300"
-                    : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                    ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600 dark:bg-blue-900/30 dark:text-blue-400 dark:border-l-blue-500 shadow-sm"
+                    : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
             )}
         >
             {item.icon}
@@ -72,10 +72,10 @@ function JadwalDropdown({ pathname, onClick }: { pathname: string; onClick?: () 
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
-                    "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                    "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200",
                     isJadwalActive
-                        ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600 dark:bg-blue-950 dark:text-blue-300"
-                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                        ? "bg-blue-50 text-blue-700 font-semibold border-l-2 border-blue-600 dark:bg-blue-900/30 dark:text-blue-400 dark:border-l-blue-500 shadow-sm"
+                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
                 )}
             >
                 <CalendarDays className="h-5 w-5" />
@@ -103,8 +103,8 @@ function JadwalDropdown({ pathname, onClick }: { pathname: string; onClick?: () 
                                 className={cn(
                                     "block rounded-md px-3 py-2 text-sm transition-colors",
                                     isSubActive
-                                        ? "bg-blue-50 text-blue-700 font-medium dark:bg-blue-950 dark:text-blue-300"
-                                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                                        ? "bg-blue-50 text-blue-700 font-medium dark:bg-blue-900/30 dark:text-blue-400"
+                                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
                                 )}
                             >
                                 {sub.label}
@@ -122,9 +122,9 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
     return (
         <>
-            <div className="flex h-14 items-center gap-3 border-b dark:border-slate-800 px-6">
-                <Image src="/logo_rsup_ngoerah.png" alt="Logo RSUP Ngoerah" width={28} height={28} />
-                <h1 className="text-lg font-bold text-slate-900 dark:text-slate-100">Ngoerah Care</h1>
+            <div className="flex h-16 items-center gap-3 border-b border-slate-100 dark:border-slate-800/50 px-6 bg-transparent">
+                <Image src="/logo_rsup_ngoerah.png" alt="Logo RSUP Ngoerah" width={32} height={32} className="drop-shadow-sm" />
+                <h1 className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">Ngoerah <span className="text-gradient">Care</span></h1>
             </div>
             <nav className="flex-1 space-y-1 overflow-y-auto p-4">
                 {navItems.map((item) => (
@@ -142,7 +142,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 // Desktop sidebar (static)
 export function DesktopSidebar() {
     return (
-        <aside className="fixed hidden h-screen w-64 flex-col border-r bg-white dark:bg-slate-900 dark:border-slate-800 md:flex">
+        <aside className="fixed hidden h-screen w-64 flex-col border-r border-slate-200/50 dark:border-slate-800/50 bg-white/70 dark:bg-slate-950/60 backdrop-blur-xl shadow-sm md:flex transition-all z-40">
             <SidebarContent />
         </aside>
     )

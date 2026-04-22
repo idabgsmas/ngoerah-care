@@ -122,10 +122,25 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm dark:bg-slate-950/60 dark:border-slate-800/40;
+  }
+  .glass-panel {
+    @apply bg-white/40 backdrop-blur-lg border border-white/40 shadow-lg dark:bg-slate-900/40 dark:border-slate-800/50;
+  }
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md dark:hover:shadow-blue-900/10;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
   }
 }
 
@@ -156,4 +171,8 @@
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
   border-radius: 0.375rem;
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #0f172a 25%, #1e293b 50%, #0f172a 75%);
 }
