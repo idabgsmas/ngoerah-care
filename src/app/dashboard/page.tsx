@@ -65,55 +65,62 @@ export default async function DashboardOverview() {
     const data = await getDashboardData()
 
     return (
-        <div className="space-y-6">
-            <div>
-                <h2 className="text-2xl font-bold tracking-tight">Overview Dashboard</h2>
-                <p className="text-slate-500">Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. Dr. I.G.N.G. Ngoerah.</p>
+        <div className="space-y-8">
+            <div className="mb-2">
+                <h2 className="text-[28px] font-heading font-bold text-slate-900 dark:text-white">Selamat Datang, Admin Ngoerah Care</h2>
+                <p className="text-slate-500 mt-1">Berikut adalah ringkasan operasional klinis hari ini di RSUP Prof. dr. I.G.N.G. Ngoerah.</p>
             </div>
 
             {/* Radar Triase Darurat - Realtime Client Component */}
             <RealtimeTriaseRadar initialData={data.triaseDarurat} />
 
             {/* Kartu Statistik Utama */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card className="border-l-4 border-l-blue-500 shadow-sm hover-lift bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-900 dark:to-blue-950/20">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Pasien Aktif (Radiasi)</CardTitle>
-                        <Activity className="h-4 w-4 text-blue-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{data.stats.pasienAktif}</div>
-                        <p className="text-xs text-slate-500">Sedang dalam masa tindakan</p>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <Card className="shadow-sm hover-lift border-0 bg-white dark:bg-slate-900 rounded-xl">
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F4FE] text-ngoerah-primary dark:bg-ngoerah-primary/20">
+                                <Users className="h-6 w-6" />
+                            </div>
+                        </div>
+                        <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">Total Database Pasien</p>
+                        <h3 className="font-heading text-4xl font-extrabold text-slate-900 dark:text-white">{data.stats.totalPasien}</h3>
                     </CardContent>
                 </Card>
-                <Card className="border-l-4 border-l-amber-500 shadow-sm hover-lift bg-gradient-to-br from-white to-amber-50/50 dark:from-slate-900 dark:to-amber-950/20">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Jadwal Hari Ini</CardTitle>
-                        <CalendarDays className="h-4 w-4 text-amber-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{data.stats.jadwalHariIni}</div>
-                        <p className="text-xs text-slate-500">Antrean radiasi masuk</p>
+
+                <Card className="shadow-sm hover-lift border-0 bg-[#FFEBEB] dark:bg-rose-950/40 rounded-xl">
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/50 text-rose-600 dark:bg-rose-900/50">
+                                <Activity className="h-6 w-6" />
+                            </div>
+                        </div>
+                        <p className="text-sm font-semibold text-rose-600 dark:text-rose-400 mb-1">Pasien Aktif (Radiasi)</p>
+                        <h3 className="font-heading text-4xl font-extrabold text-rose-700 dark:text-rose-300">{data.stats.pasienAktif}</h3>
                     </CardContent>
                 </Card>
-                <Card className="border-l-4 border-l-emerald-500 shadow-sm hover-lift bg-gradient-to-br from-white to-emerald-50/50 dark:from-slate-900 dark:to-emerald-950/20">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Selesai Radiasi</CardTitle>
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{data.stats.pasienSelesai}</div>
-                        <p className="text-xs text-slate-500">Masuk masa kontrol/restaging</p>
+
+                <Card className="shadow-sm hover-lift border-0 bg-white dark:bg-slate-900 rounded-xl">
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-50 text-ngoerah-tertiary dark:bg-amber-900/20">
+                                <CalendarDays className="h-6 w-6" />
+                            </div>
+                        </div>
+                        <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">Jadwal Hari Ini</p>
+                        <h3 className="font-heading text-4xl font-extrabold text-slate-900 dark:text-white">{data.stats.jadwalHariIni}</h3>
                     </CardContent>
                 </Card>
-                <Card className="border-l-4 border-l-slate-400 shadow-sm hover-lift bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Database Pasien</CardTitle>
-                        <Users className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{data.stats.totalPasien}</div>
-                        <p className="text-xs text-slate-500">Seluruh data terekam</p>
+
+                <Card className="shadow-sm hover-lift border-0 bg-white dark:bg-slate-900 rounded-xl">
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20">
+                                <CheckCircle2 className="h-6 w-6" />
+                            </div>
+                        </div>
+                        <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">Selesai Radiasi</p>
+                        <h3 className="font-heading text-4xl font-extrabold text-slate-900 dark:text-white">{data.stats.pasienSelesai}</h3>
                     </CardContent>
                 </Card>
             </div>
@@ -121,7 +128,7 @@ export default async function DashboardOverview() {
             <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-7">
 
                 {/* Antrean Hari Ini */}
-                <Card className="lg:col-span-4 shadow-md hover-lift transition-all duration-300 border-slate-200/60 dark:border-slate-800/60">
+                <Card className="lg:col-span-4 shadow-sm border-0 bg-white dark:bg-slate-900 rounded-xl">
                     <CardHeader className="flex flex-row items-center justify-between">
                         <div>
                             <CardTitle>Antrean Radiasi Hari Ini</CardTitle>
@@ -133,18 +140,18 @@ export default async function DashboardOverview() {
                     </CardHeader>
                     <CardContent>
                         <Table>
-                            <TableHeader className="bg-slate-50/50 dark:bg-slate-800/50">
-                                <TableRow>
-                                    <TableHead className="w-[80px] text-center">Antrean</TableHead>
-                                    <TableHead>Pasien</TableHead>
-                                    <TableHead>Alat / Mesin</TableHead>
-                                    <TableHead className="text-center">Jam Sinar</TableHead>
+                            <TableHeader className="bg-transparent border-b-2 border-slate-100 dark:border-slate-800">
+                                <TableRow className="hover:bg-transparent">
+                                    <TableHead className="w-[80px] text-center text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Antrean</TableHead>
+                                    <TableHead className="text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Pasien</TableHead>
+                                    <TableHead className="text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Alat / Mesin</TableHead>
+                                    <TableHead className="text-center text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Jam Sinar</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {data.antreanHariIni.length > 0 ? (
                                     data.antreanHariIni.map((jadwal) => (
-                                        <TableRow key={jadwal.id_jadwal} className="transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40">
+                                        <TableRow key={jadwal.id_jadwal} className="transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40 border-b border-slate-50 dark:border-slate-800/30">
                                             <TableCell className="text-center">
                                                 <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xs mx-auto">
                                                     {jadwal.no_antrean || '-'}
@@ -177,7 +184,7 @@ export default async function DashboardOverview() {
                 </Card>
 
                 {/* Log Chat Terbaru */}
-                <Card className="lg:col-span-3 shadow-md hover-lift transition-all duration-300 border-slate-200/60 dark:border-slate-800/60">
+                <Card className="lg:col-span-3 shadow-sm border-0 bg-white dark:bg-slate-900 rounded-xl">
                     <CardHeader>
                         <CardTitle>Log Percakapan Terakhir</CardTitle>
                         <CardDescription>Aktivitas pesan terbaru dari bot Ngoerah Care.</CardDescription>
@@ -185,7 +192,7 @@ export default async function DashboardOverview() {
                     <CardContent>
                         <div className="space-y-4">
                             {data.chatTerbaru.map((chat) => (
-                                <div key={chat.id_chat} className="flex items-start gap-4 border-b border-slate-100 dark:border-slate-800 pb-4 last:border-0 last:pb-0 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/30 p-2 rounded-lg">
+                                <div key={chat.id_chat} className="flex items-start gap-4 border-b border-slate-50 dark:border-slate-800/30 py-3 last:border-0 last:pb-0 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/30 px-3 rounded-lg -mx-3">
                                     <div className="flex-1 space-y-1">
                                         <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                                             {chat.pasien?.nama_lengkap || 'Unknown'}
