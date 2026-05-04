@@ -9,6 +9,7 @@ async function getPasien() {
     const { data, error } = await supabase
         .from('pasien')
         .select('*')
+        .limit(5000) // TAMBAHKAN BARIS INI: Memaksa Supabase mengambil hingga 5000 data
         .order('created_at', { ascending: false })
 
     if (error) {
