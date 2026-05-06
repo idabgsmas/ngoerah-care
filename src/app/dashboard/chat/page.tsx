@@ -48,7 +48,7 @@ async function getChatHistory() {
             pesan_sistem: isCurrentAssistant || isCurrentSystem ? current.pesan : '-',
         };
 
-        // JIKA baris saat ini adalah balasan Ngoerah Care (AI)
+        // JIKA baris saat ini adalah balasan Navira (AI)
         // KITA CEK baris berikutnya (pesan yang lebih lama)
         if (isCurrentAssistant && i + 1 < data.length) {
             const next = data[i + 1];
@@ -79,7 +79,7 @@ export default async function ChatPage() {
                 </div>
                 <div>
                     <h2 className="text-2xl font-bold tracking-tight">Chat History</h2>
-                    <p className="text-slate-500">Pemantauan interaksi chatbot pasien dengan Ngoerah Care dan notifikasi sistem.</p>
+                    <p className="text-slate-500">Pemantauan interaksi chatbot pasien dengan Navira dan notifikasi sistem.</p>
                 </div>
             </div>
 

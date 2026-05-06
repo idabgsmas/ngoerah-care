@@ -55,6 +55,9 @@ export const columns: ColumnDef<BroadcastLog>[] = [
             if (teks.includes('ct simulasi')) return 'Info CT Simulasi';
             return 'Lainnya';
         },
+        filterFn: (row, columnId, filterValue) => {
+            return row.getValue(columnId) === filterValue;
+        },
         cell: ({ row }) => {
             const kategori = row.getValue("jenis_pengingat") as string;
             return (

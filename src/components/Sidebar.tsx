@@ -87,7 +87,7 @@ function JadwalDropdown({ pathname, onClick }: { pathname: string; onClick?: () 
                     {jadwalSubItems.map((sub) => {
                         const alatParam = searchParams.get('alat');
                         let isSubActive = false;
-                        
+
                         if (sub.exact) {
                             isSubActive = pathname === sub.href && !alatParam;
                         } else {
@@ -124,7 +124,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         <>
             <div className="flex flex-col items-center gap-2 border-b border-slate-100 dark:border-slate-800/50 px-6 py-8 bg-transparent">
                 <Image src="/logo_rsup_ngoerah.png" alt="Logo RSUP Ngoerah" width={48} height={48} className="drop-shadow-sm" />
-                <h1 className="text-xl font-heading font-extrabold tracking-tight text-slate-900 dark:text-white">Ngoerah <span className="text-ngoerah-primary">Care</span></h1>
+                <h1 className="text-xl font-heading font-extrabold tracking-tight text-slate-900 dark:text-white">NAVIRA <span className="text-ngoerah-primary">AI</span></h1>
             </div>
             <nav className="flex-1 overflow-y-auto py-6">
                 {navItems.map((item) => (

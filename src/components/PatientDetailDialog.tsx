@@ -183,7 +183,7 @@ export default function PatientDetailDialog({
                                                             ? 'bg-blue-50 text-blue-700 border-blue-200'
                                                             : 'bg-slate-50 text-slate-600 border-slate-200'
                                                     }>
-                                                        {chat.role === 'user' ? 'Pasien' : 'Ngoerah Care'}
+                                                        {chat.role === 'user' ? 'Pasien' : 'Navira'}
                                                     </Badge>
                                                     <span className="text-xs text-slate-400">
                                                         {new Date(chat.created_at).toLocaleString('id-ID', {

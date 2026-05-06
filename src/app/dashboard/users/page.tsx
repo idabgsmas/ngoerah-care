@@ -190,7 +190,7 @@ export default function UserManagementPage() {
                         <Users className="h-5 w-5" />
                         Daftar User ({users.length})
                     </CardTitle>
-                    <CardDescription>Semua akun yang terdaftar di sistem Ngoerah Care.</CardDescription>
+                    <CardDescription>Semua akun yang terdaftar di sistem Navira.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     {error ? (

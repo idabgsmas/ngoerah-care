@@ -85,7 +85,7 @@ export default async function PengingatOtomatisPage() {
                         <CardTitle className="text-lg text-amber-900 dark:text-amber-500">Antrean Pengingat (Tindakan Besok)</CardTitle>
                     </div>
                     <CardDescription>
-                        Prediksi pasien yang akan menerima notifikasi dari Ngoerah Care berdasarkan jadwal tindakan esok hari.
+                        Prediksi pasien yang akan menerima notifikasi dari Navira berdasarkan jadwal tindakan esok hari.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4">

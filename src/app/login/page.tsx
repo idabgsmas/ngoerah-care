@@ -61,7 +61,7 @@ export default function LoginPage() {
     if (isChecking) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-slate-950">
-                <div className="animate-pulse text-slate-500 text-lg font-medium tracking-wide">Memuat Ngoerah Care...</div>
+                <div className="animate-pulse text-slate-500 text-lg font-medium tracking-wide">Memuat Navira...</div>
             </div>
         )
     }
@@ -88,71 +88,71 @@ export default function LoginPage() {
                         </div>
 
                         <CardTitle className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                            Ngoerah <span className="text-gradient">Care</span>
+                            NAVIRA <span className="text-gradient">AI</span>
                         </CardTitle>
                         <CardDescription className="text-slate-500 dark:text-slate-400 text-sm px-2 leading-relaxed">
                             Akses panel pemantauan cerdas pasien radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="admin@ngoerah.care"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center justify-between">
-                                <Label htmlFor="password">Password</Label>
-                                <Dialog>
-                                    <DialogTrigger asChild>
-                                        <span className="text-xs font-medium text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition-colors">
-                                            Lupa Password?
-                                        </span>
-                                    </DialogTrigger>
-                                    <DialogContent className="sm:max-w-md">
-                                        <DialogHeader>
-                                            <DialogTitle className="flex items-center gap-2 text-slate-800">
-                                                <ShieldAlert className="h-5 w-5 text-amber-500" />
-                                                Reset Password
-                                            </DialogTitle>
-                                            <DialogDescription className="pt-3 text-slate-600 leading-relaxed">
-                                                Demi menjaga keamanan dan kerahasiaan data rekam medis pasien, reset password tidak dapat dilakukan secara otomatis.
-                                                <br /><br />
-                                                Silakan hubungi <strong className="text-slate-800">Admin Ngoerah Care</strong> atau Radiologi RSUP Prof. dr. I.G.N.G. Ngoerah untuk meminta perubahan kata sandi akun Anda.
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <div className="flex justify-end pt-2">
-                                            <DialogTrigger asChild>
-                                                <Button variant="secondary">Tutup</Button>
-                                            </DialogTrigger>
-                                        </div>
-                                    </DialogContent>
-                                </Dialog>
+                        <form onSubmit={handleLogin} className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    placeholder="admin@ngoerah.care"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
                             </div>
-                            <Input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </div>
+                            <div className="space-y-2">
+                                <div className="flex items-center justify-between">
+                                    <Label htmlFor="password">Password</Label>
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <span className="text-xs font-medium text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition-colors">
+                                                Lupa Password?
+                                            </span>
+                                        </DialogTrigger>
+                                        <DialogContent className="sm:max-w-md">
+                                            <DialogHeader>
+                                                <DialogTitle className="flex items-center gap-2 text-slate-800">
+                                                    <ShieldAlert className="h-5 w-5 text-amber-500" />
+                                                    Reset Password
+                                                </DialogTitle>
+                                                <DialogDescription className="pt-3 text-slate-600 leading-relaxed">
+                                                    Demi menjaga keamanan dan kerahasiaan data rekam medis pasien, reset password tidak dapat dilakukan secara otomatis.
+                                                    <br /><br />
+                                                    Silakan hubungi <strong className="text-slate-800">Admin Navira</strong> atau Radiologi RSUP Prof. dr. I.G.N.G. Ngoerah untuk meminta perubahan kata sandi akun Anda.
+                                                </DialogDescription>
+                                            </DialogHeader>
+                                            <div className="flex justify-end pt-2">
+                                                <DialogTrigger asChild>
+                                                    <Button variant="secondary">Tutup</Button>
+                                                </DialogTrigger>
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
 
-                        {error && <p className="text-sm font-medium text-red-500">{error}</p>}
+                            {error && <p className="text-sm font-medium text-red-500">{error}</p>}
 
-                        <Button type="submit" className="w-full h-11 text-base font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-600 dark:hover:bg-blue-700" disabled={loading}>
-                            {loading ? "Otentikasi Berjalan..." : "Masuk ke Sistem"}
-                        </Button>
-                    </form>
-                </CardContent>
-            </Card>
+                            <Button type="submit" className="w-full h-11 text-base font-semibold shadow-md hover:-translate-y-0.5 transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-600 dark:hover:bg-blue-700" disabled={loading}>
+                                {loading ? "Otentikasi Berjalan..." : "Masuk ke Sistem"}
+                            </Button>
+                        </form>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     )

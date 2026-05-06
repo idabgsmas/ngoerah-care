@@ -11,6 +11,8 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import RealtimeTriaseRadar from '@/components/RealtimeTriaseRadar'
+import RealtimeClock from './RealtimeClock'
+import AntreanTableClient from './AntreanTableClient'
 import type { TriageLog, Jadwal, ChatHistory } from '@/types/database.types'
 
 export const dynamic = 'force-dynamic'
@@ -66,9 +68,12 @@ export default async function DashboardOverview() {
 
     return (
         <div className="space-y-8">
-            <div className="mb-2">
-                <h2 className="text-[28px] font-heading font-bold text-slate-900 dark:text-white">Selamat Datang, Admin Ngoerah Care</h2>
-                <p className="text-slate-500 mt-1">Berikut adalah ringkasan operasional klinis hari ini di RSUP Prof. dr. I.G.N.G. Ngoerah.</p>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
+                <div>
+                    <h2 className="text-[28px] font-heading font-bold text-slate-900 dark:text-white">Selamat Pagi, Admin Ngoerah</h2>
+                    <p className="text-slate-500 mt-1">Berikut adalah ringkasan operasional klinis hari ini di RSUP Prof. dr. I.G.N.G. Ngoerah.</p>
+                </div>
+                <RealtimeClock />
             </div>
 
             {/* Radar Triase Darurat - Realtime Client Component */}
@@ -139,47 +144,7 @@ export default async function DashboardOverview() {
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <Table>
-                            <TableHeader className="bg-transparent border-b-2 border-slate-100 dark:border-slate-800">
-                                <TableRow className="hover:bg-transparent">
-                                    <TableHead className="w-[80px] text-center text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Antrean</TableHead>
-                                    <TableHead className="text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Pasien</TableHead>
-                                    <TableHead className="text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Alat / Mesin</TableHead>
-                                    <TableHead className="text-center text-xs font-bold text-slate-400 uppercase tracking-wider h-12">Jam Sinar</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {data.antreanHariIni.length > 0 ? (
-                                    data.antreanHariIni.map((jadwal) => (
-                                        <TableRow key={jadwal.id_jadwal} className="transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40 border-b border-slate-50 dark:border-slate-800/30">
-                                            <TableCell className="text-center">
-                                                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xs mx-auto">
-                                                    {jadwal.no_antrean || '-'}
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="font-medium text-sm">{jadwal.pasien?.nama_lengkap}</div>
-                                                <div className="text-xs text-slate-400 dark:text-slate-500">RM: {jadwal.pasien?.no_rm_4_digit}</div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Badge variant="outline" className="font-normal bg-slate-50 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">
-                                                    {jadwal.pasien?.tipe_alat || '-'}
-                                                </Badge>
-                                            </TableCell>
-                                            <TableCell className="text-center font-medium text-slate-600 dark:text-slate-300 text-sm">
-                                                {jadwal.jam_sinar || '--:--'}
-                                            </TableCell>
-                                        </TableRow>
-                                    ))
-                                ) : (
-                                    <TableRow>
-                                        <TableCell colSpan={4} className="h-32 text-center text-slate-400 italic">
-                                            Tidak ada jadwal tindakan untuk hari ini.
-                                        </TableCell>
-                                    </TableRow>
-                                )}
-                            </TableBody>
-                        </Table>
+                        <AntreanTableClient data={data.antreanHariIni} />
                     </CardContent>
                 </Card>
 
@@ -187,22 +152,24 @@ export default async function DashboardOverview() {
                 <Card className="lg:col-span-3 shadow-sm border-0 bg-white dark:bg-slate-900 rounded-xl">
                     <CardHeader>
                         <CardTitle>Log Percakapan Terakhir</CardTitle>
-                        <CardDescription>Aktivitas pesan terbaru dari bot Ngoerah Care.</CardDescription>
+                        <CardDescription>Aktivitas pesan terbaru dari bot Navira.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
                             {data.chatTerbaru.map((chat) => (
                                 <div key={chat.id_chat} className="flex items-start gap-4 border-b border-slate-50 dark:border-slate-800/30 py-3 last:border-0 last:pb-0 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/30 px-3 rounded-lg -mx-3">
                                     <div className="flex-1 space-y-1">
-                                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
-                                            {chat.pasien?.nama_lengkap || 'Unknown'}
-                                        </p>
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                                                {chat.pasien?.nama_lengkap || 'Unknown'}
+                                            </p>
+                                            <span className="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">
+                                                {new Date(chat.created_at).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Makassar' })}
+                                            </span>
+                                        </div>
                                         <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 italic">
                                             &quot;{chat.pesan}&quot;
                                         </p>
-                                    </div>
-                                    <div className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase">
-                                        {new Date(chat.created_at).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}
                                     </div>
                                 </div>
                             ))}

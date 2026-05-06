@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ngoerah Care - RSUP Prof. Dr. I.G.N.G. Ngoerah",
+  title: "Navira - RSUP Prof. Dr. I.G.N.G. Ngoerah",
   description: "Sistem Pemantauan Chatbot Pasien Radioterapi RSUP Prof. dr. I.G.N.G. Ngoerah",
   icons: {
     icon: [
@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html
+    <html
       lang="en"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, inter.variable, manrope.variable)}
     >

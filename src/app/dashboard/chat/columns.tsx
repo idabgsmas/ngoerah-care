@@ -69,7 +69,7 @@ export const columns: ColumnDef<ChatPair>[] = [
     },
     {
         accessorKey: "pesan_sistem",
-        header: "Respon Ngoerah Care",
+        header: "Respon Navira",
         cell: ({ row }) => {
             const pesan = row.getValue("pesan_sistem") as string | null;
 
