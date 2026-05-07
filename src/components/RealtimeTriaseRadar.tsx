@@ -36,7 +36,7 @@ export default function RealtimeTriaseRadar({ initialData }: RealtimeTriaseRadar
                 },
                 async () => {
                     // Saat ada perubahan, fetch ulang data triase darurat hari ini
-                    const today = new Date().toISOString().split('T')[0]
+                    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Makassar' })
                     const { data } = await supabase
                         .from('triage_logs')
                         .select('*, pasien(nama_lengkap, no_rm_4_digit, no_wa_primary)')

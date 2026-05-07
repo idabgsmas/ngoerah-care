@@ -19,7 +19,7 @@ export const dynamic = 'force-dynamic'
 
 async function getDashboardData() {
     const supabase = await createSupabaseServerClient();
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Makassar' }); // YYYY-MM-DD in WITA
 
     // 1. Statistik Utama
     const { count: totalPasien } = await supabase.from('pasien').select('*', { count: 'exact', head: true })

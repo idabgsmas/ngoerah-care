@@ -37,7 +37,7 @@ async function getAntreanBesok() {
     // Mencari tanggal besok
     const besok = new Date()
     besok.setDate(besok.getDate() + 1)
-    const besokStr = besok.toISOString().split('T')[0]
+    const besokStr = besok.toLocaleDateString('en-CA', { timeZone: 'Asia/Makassar' })
 
     const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
